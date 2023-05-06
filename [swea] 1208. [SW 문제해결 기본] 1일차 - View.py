@@ -31,3 +31,18 @@ for test_case in range(1, 11):
         if view1 > 0 and view2 > 0 and view3 > 0 and view4 > 0 :
             sum = sum + min(view1, view2, view3, view4)
     print("#{} {}".format(test_case, sum))
+
+
+--------------------------------------------------
+
+2023.05.06
+
+for test_case in range(1, 11):
+    a = int(input())
+    answer = 0
+    n = list(map(int, input().split()))
+    for i in range(2, len(n)-2):
+        if n[i-2] > n[i] or n[i-1] > n[i] or n[i+1] > n[i] or n[i+2] > n[i]:
+            continue
+        answer += n[i] - max(n[i-2], n[i-1], n[i+1], n[i+2])
+    print("#{} {}".format(test_case, answer))
