@@ -9,3 +9,17 @@ for test_case in range(1, T + 1):
         height[height.index(min(height))] += 1
         height[height.index(max(height))] -= 1
     print("#{} {}".format(test_case, max(height) - min(height)))
+
+------------------------------------------
+
+23.05.07
+
+for test_case in range(1, 11):
+    dump = int(input())
+    boxes = list(map(int, input().split()))
+    while dump:
+        boxes = sorted(boxes)
+        boxes[-1] = boxes[-1] - 1
+        boxes[0] = boxes[0] + 1
+        dump -= 1
+    print("#{} {}".format(test_case, max(boxes)-min(boxes)))
