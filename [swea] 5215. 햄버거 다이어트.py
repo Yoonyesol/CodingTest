@@ -20,3 +20,29 @@ for test_case in range(1, T + 1):
     max_taste = 0
     dfs(0, 0, 0)
     print("#{} {}".format(test_case, max_taste))
+
+
+---------------------------------
+
+23.05.09
+def dfs(depth, total_t, total_k):
+    global max_t
+    if total_k > l:
+        return
+    max_t = max(max_t, total_t)
+    if depth == n:
+        return
+    t, k = arr[depth]
+    dfs(depth+1, total_t+t, total_k+k)
+    dfs(depth+1, total_t, total_k)
+
+T = int(input())
+for test_case in range(1, T + 1):
+    n, l = map(int, input().split())
+    arr = []
+    for _ in range(n):
+        t, k = map(int, input().split())
+        arr.append((t, k))
+    max_t = 0
+    dfs(0, 0, 0)
+    print("#{} {}".format(test_case, max_t))
