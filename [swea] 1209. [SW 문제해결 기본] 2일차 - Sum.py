@@ -18,3 +18,29 @@ for test_case in range(1, T + 1):
         if ans[1] < col_sum:
             ans[1] = col_sum
     print("#{} {}".format(test_case, max(ans)))
+
+
+--------------------------------------
+
+23.05.09
+
+for test_case in range(1, 11):
+    _ = int(input())
+    arr = []
+    r_hap = 0
+    c_hap, c_hap2 = 0, 0
+    g_hap, g_hap2 = 0, 0
+    for _ in range(100):
+        a = list(map(int, input().split()))
+        r_hap = max(r_hap, sum(a))  #가로합 최댓값
+        arr.append(a)
+    for j in range(100):
+        c_hap = 0
+        for i in range(100):
+            c_hap += arr[i][j]  #세로합
+            if i == j:
+                g_hap += arr[i][j]
+            if i + j == 99:
+                g_hap2 += arr[i][j]
+        c_hap2 = max(c_hap, c_hap2)
+    print("#{} {}".format(test_case, max(r_hap, c_hap2, g_hap, g_hap2)))
