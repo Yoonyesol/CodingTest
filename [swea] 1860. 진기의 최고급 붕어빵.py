@@ -10,3 +10,19 @@ for test_case in range(1, T + 1):
             ans = "Impossible"
             break
     print("#{} {}".format(test_case, ans))
+
+--------------------------------
+
+T = int(input())
+for test_case in range(1, T+1):
+    ans = "Possible"
+    #n명, m초의 시간을 들여 k개의 붕어빵 제조
+    n, m ,k = map(int, input().split())
+    #각 초마다 사람이 도착
+    arr = list(map(int, input().split()))
+    arr.sort()
+    for i in range(len(arr)):
+        boong = arr[i]//m*k - i
+        if boong <= 0:
+            ans = "Impossible"
+    print("#{} {}".format(test_case, ans))
