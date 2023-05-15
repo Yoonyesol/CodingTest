@@ -8,3 +8,12 @@ for test_case in range(1, T + 1):
         cnt += 1
         estring = estring[estring.find(fstring) + len(fstring):]	#찾은 문자열까지 estring에서 슬라이싱하여 지우기
     print("#{} {}".format(test_case, cnt))
+
+----------------------------
+
+T = 10
+for test_case in range(1, T+1):
+    int(input())
+    search = input()
+    whole_string = input()
+    print("#{} {}".format(test_case, whole_string.count(search)))
