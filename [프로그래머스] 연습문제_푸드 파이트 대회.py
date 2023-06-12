@@ -6,3 +6,18 @@ def solution(food):
     for j in range(len(food)-1, 0, -1): #대칭을 만들기 위해 인덱스 뒤에서부터 동일하게 반복
         answer += str(j) * (food[j] // 2)
     return answer
+
+
+----------------------------
+
+
+def solution(food):
+    answer = "0"
+    for i in range(len(food)-1, 0, -1):
+        if food[i] % 2 == 0:
+            answer = str(i) * (food[i] // 2) + answer
+            answer += str(i) * (food[i] // 2)
+        else:
+            answer = str(i) * ((food[i]-1)//2) + answer
+            answer += str(i) * ((food[i]-1)//2)
+    return answer
