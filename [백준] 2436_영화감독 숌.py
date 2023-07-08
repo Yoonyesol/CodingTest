@@ -10,3 +10,19 @@ while True:
     if cnt == n:    #n번째로 큰 지구종말 수 
         print(i)    #해당 수를 출력한다.
         break
+
+
+-------------------------
+
+import sys
+input=sys.stdin.readline
+n = int(input())
+cnt = 0
+i = 666
+while True:
+    if '666' in str(i):
+        cnt += 1
+        if cnt == n:
+            print(i)
+            break
+    i += 1
