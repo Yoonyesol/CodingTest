@@ -32,3 +32,38 @@ for _ in range(tc):
                     return arr[nx][ny]-1    #마지막 방문처리(+1)한 것 제외하고 arr[nx][ny] 리턴
                 queue.append((nx, ny))  #리턴되지 않을 시, 다음 방문을 위해 현재 좌표를 큐에 저장
     print(bfs(current_xy[0], current_xy[1]))    #현재좌표X,Y를 시작좌표로 삼아 BFS실행
+
+----------------------------------
+
+from collections import deque
+import sys
+input=sys.stdin.readline
+
+#이동 가능한 좌표
+dx = [-2, -2, -1, -1, 1, 1, 2, 2]
+dy = [1, -1, 2, -2, 2, -2, -1, 1]
+
+def bfs(x, y):
+    queue = deque()
+    queue.append((x, y))
+    while queue:
+        x, y = queue.popleft()
+        #큐에서 꺼낸 x,y 좌표가 타겟 좌표와 동일하다면
+        if x == target_x and y == target_y:
+            return chess[x][y]  #현재까지의 이동거리를 리턴
+        for i in range(8):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            if nx >= l or nx < 0 or ny >= l or ny < 0:
+                continue
+            if not chess[nx][ny]:   #nx, ny가 아직 방문하지 않은 좌표라면
+                chess[nx][ny] = chess[x][y] + 1 #새 좌표에 현재까지의 이동거리 체크
+                queue.append((nx, ny))
+
+tc = int(input())
+for _ in range(tc):
+    l = int(input())
+    x, y = map(int, input().split())
+    target_x, target_y = map(int, input().split())
+    chess = [[0] * l for _ in range(l)]
+    print(bfs(x, y))
