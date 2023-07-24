@@ -13,3 +13,21 @@ if n < 0:   #n이 음수인 경우-> 거스름돈을 2와 5로 거슬러줄 수 
     print(-1)
 else:   #거스름돈을 2와 5로 거슬러줄 수 없는 경우
     print(cnt)  #체크한 거스름돈 갯수 출력
+
+--------------------
+
+import sys
+input=sys.stdin.readline
+n = int(input())
+charge = 0
+while n>0:
+    if n % 5 == 0:
+        charge += (n//5)
+        break
+    else:
+        n -= 2
+        charge += 1
+if n < 0:
+    print(-1)
+else:
+    print(charge)
