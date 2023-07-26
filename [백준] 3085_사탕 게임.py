@@ -33,3 +33,43 @@ for i in range(n):
             max_cnt = max(max_cnt, check())
             pan[i][j], pan[i+1][j] = pan[i+1][j], pan[i][j]
 print(max_cnt)
+
+-------------------------
+
+import sys
+input=sys.stdin.readline
+n = int(input())
+candy = [list(input().rstrip()) for _ in range(n)]
+
+def maxCandy():
+    max_cnt = 0 #최대 cnt값을 저장하는 변수
+    for i in range(n):
+        cnt = 1 #동일한 사탕의 갯수를 카운팅할 변수
+        for j in range(n - 1):
+            if candy[i][j] == candy[i][j+1]:    #오른쪽 사탕과 비교
+                cnt += 1    #양쪽 사탕이 동일한 경우 카운팅
+                max_cnt = max(max_cnt, cnt) #동일한 사탕 최대갯수 업데이트
+            else:
+                cnt = 1 #한 줄의 중간에 동일하지 않은 사탕이 껴있을 때, cnt 초기화하고 다시 세기
+        cnt = 1
+        for j in range(n - 1):
+            if candy[j][i] == candy[j+1][i]:    #아래쪽 사탕과 비교
+                cnt += 1
+                max_cnt = max(max_cnt, cnt)
+            else:
+                cnt = 1
+    return max_cnt
+
+max_candy = 0   #동일한 사탕의 갯수 중 가장 큰 값을 저장하는 변수
+for i in range(n):
+    for j in range(n-1):
+        if candy[i][j] != candy[i][j+1]:    #현재 사탕의 오른쪽 사탕 검사, 동일하지 않다면
+            candy[i][j], candy[i][j+1] = candy[i][j+1], candy[i][j] #두 사탕의 위치를 바꿈
+            max_candy = max(maxCandy(), max_candy)  #현 위치에서 동일한 사탕의 최대갯수 구하기
+            candy[i][j], candy[i][j+1] = candy[i][j+1], candy[i][j] #원복
+    for j in range(n-1):
+        if candy[j][i] != candy[j+1][i]:    #현재 사탕의 아래쪽 사탕 검사
+            candy[j][i], candy[j+1][i] = candy[j+1][i], candy[j][i]
+            max_candy = max(maxCandy(), max_candy)
+            candy[j][i], candy[j+1][i] = candy[j+1][i], candy[j][i]
+print(max_candy)
