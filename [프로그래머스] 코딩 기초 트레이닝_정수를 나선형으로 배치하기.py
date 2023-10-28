@@ -35,3 +35,21 @@ def solution(n):
     answer[x][y] = num  #누락된 가장 마지막 수는 따로 처리해준다.
     return answer
 
+
+----------------------------
+[모범답안]
+
+def solution(n):
+    answer = [[None for j in range(n)] for i in range(n)]
+    move = [[0, 1], [1, 0], [0, -1], [-1, 0]]   #오른쪽, 아래, 왼쪽, 위
+    x, y, m = 0, 0, 0
+    # 1 ~ N^2까지 처리
+    for i in range(1, n**2 + 1):
+        answer[y][x] = i
+        #배열 범위를 벗어난 경우 또는 answer의 해당 위치에 이미 값이 저장된 경우 처리
+        if y + move[m][0] >= n or x + move[m][1] >= n or answer[y + move[m][0]][x + move[m][1]]:
+            m = (m + 1) % len(move) #다음 방향으로 이동, 4개 벗어나는 경우 mod로 처리
+        #좌표 이동
+        y, x = y + move[m][0], x + move[m][1]
+    return answer
+
