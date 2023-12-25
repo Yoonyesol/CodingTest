@@ -17,3 +17,49 @@ for i in sorted(arr):
     if i == a or i == b:
         continue
     print(i)
+
+----------------
+
+2차 
+
+import sys
+input = sys.stdin.readline
+
+arr = []
+for i in range(9):
+    arr.append(int(input().strip()))
+
+num = sum(arr) - 100
+for i in arr:
+    if i > num or i*2 == num:
+        continue
+    temp = num - i
+    if temp in arr:
+        arr.remove(temp)
+        arr.remove(i)
+        break
+
+for i in sorted(arr):
+    print(i)
+
+--------------------
+
+import sys
+input = sys.stdin.readline
+
+arr = []
+for _ in range(9):
+    arr.append(int(input().strip()))
+
+num = sum(arr) - 100
+a, b = 0, 0
+for i in arr:
+    if i > num or i*2 == num:
+        continue
+    if num - i in arr:
+        a, b = num - i, i
+        break
+
+for i in sorted(arr):
+    if i != a and i != b:
+        print(i)
