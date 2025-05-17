@@ -23,3 +23,22 @@ for test_case in range(1, T + 1):
             answer += 1
             flag = 1
     print("#{} {}".format(test_case, answer))
+
+
+--------------------------------------
+
+25.05.17
+T = int(input())
+for test_case in range(1, T + 1):
+    origin = list(input())
+    b = "0" * len(list(origin))
+    index = 0
+    ans = 0
+
+    while index < len(origin):
+        if origin[index] != b[index]:
+            ans += 1
+            b = b[0:index] + origin[index] * len(b[index:])
+        index += 1
+
+    print('#{} {}'.format(test_case, ans))
