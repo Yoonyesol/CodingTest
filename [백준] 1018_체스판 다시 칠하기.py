@@ -24,3 +24,33 @@ for i in range(n-7):
         ans_arr.append(ans1)
         ans_arr.append(ans2)
 print(min(ans_arr))
+
+#---------------------
+# 25.05.18
+n, m = map(int, input().split())
+board = [[] for _ in range(n)]
+ans = []
+
+for i in range(n):
+    row = list(input())
+    board[i] = row
+
+for i in range(n-7):
+    for j in range(m-7):
+        ans1 = 0    #맨위쪽 W, 짝수
+        ans2 = 0    #맨위쪽 B, 홀수
+        for k in range(i, i+8):
+            for l in range(j, j+8):
+                if (k+l) % 2 == 0:
+                    if board[k][l] == 'B': #현재 칸 색은 w여야 함
+                        ans1 += 1
+                    if board[k][l] == 'W':
+                        ans2 += 1
+                else:
+                    if board[k][l] != 'B': #현재 칸 색은 b여야 함
+                        ans1 += 1
+                    if board[k][l] != 'W':
+                        ans2 += 1
+        ans.append(ans1)
+        ans.append(ans2)
+print(min(ans))
