@@ -24,3 +24,24 @@ for i in itertools.permutations([i for i in range(1, n+1)]):
     else:
         print(' '.join(map(str, i)))
         break
+
+#----------------------
+# 25.05.28
+from itertools import permutations
+
+n = int(input())
+arr = [0] + list(map(int, input().split()))
+people = [i+1 for i in range(n)]
+
+for i in permutations(people):  # 줄 설 수 있는 경우의 수
+    ans = [0 for _ in range(n + 1)]
+    for j in range(n):  # 키 작은 사람 전체 확인. i[j] = 줄 서 있는 사람(1, 2, 3, 4)
+        cnt = 0
+        for k in range(j):  #i[j] 이전에 줄서 있던 사람들 체크
+            if i[k] > i[j]:
+                cnt += 1
+        ans[i[j]] = cnt
+    if arr == ans:
+        for j in i:
+            print(j, end=' ')
+        break
