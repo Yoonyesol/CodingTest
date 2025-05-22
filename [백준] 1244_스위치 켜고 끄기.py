@@ -37,3 +37,45 @@ for i in arr:
     if cnt == 20:   #문자를 20개 찍었다면
         print() #줄바꿈
         cnt = 0 #cnt값 초기화
+
+#-----------------------
+# 25.05.23
+s_num = int(input())
+s_stat = list(map(int, input().split()))
+student = int(input())
+
+for _ in range(student):
+    gender, b = map(int, input().split())
+    if gender == 1: #남학생
+        for i in range(b-1, len(s_stat), b):
+            if s_stat[i] == 1:
+                s_stat[i] = 0
+            else:
+                s_stat[i] = 1
+    elif gender == 2:   #여학생
+        if s_stat[b-1] == 1:
+            s_stat[b-1] = 0
+        else:
+            s_stat[b-1] = 1
+        x, y = b - 1, b - 1
+        while True:
+            x -= 1
+            y += 1
+            if x < 0 or y >= len(s_stat):
+                break
+            if s_stat[x] != s_stat[y]:
+                break
+            if s_stat[x] == 1:
+                s_stat[x] = 0
+                s_stat[y] = 0
+            elif s_stat[x] == 0:
+                s_stat[x] = 1
+                s_stat[y] = 1
+
+cnt = 0
+for i in s_stat:
+    print(i, end=" ")
+    cnt += 1
+    if cnt == 20:
+        print()
+        cnt = 0
