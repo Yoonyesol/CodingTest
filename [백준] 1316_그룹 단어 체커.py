@@ -17,3 +17,25 @@ for _ in range(n):
     else:   #for문 중간에 탈출이 일어나지 않으면, 그룹단어라는 뜻
         cnt += 1    #그룹단어 갯수 체크
 print(cnt)
+
+#-----------
+#25.05.22
+n = int(input())
+arr = []
+
+for _ in range(n):
+    arr.append(input())
+
+cnt = 0
+for i in arr:   #arr 내부 단어 하나씩 체크
+    stack = []
+    for j in range(len(i)): #단어 char 인덱스 j
+        if len(stack) == 0:
+            stack.append(i[j])
+            continue
+        if i[j] != stack[-1] and i[j] in stack:
+            break
+        stack.append(i[j])
+    else:
+        cnt += 1
+print(cnt)
