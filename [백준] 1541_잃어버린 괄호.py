@@ -12,3 +12,15 @@ for i in range(len(sik)):   #-기준으로 분리된 문자열을 하나씩 확�
 print(total)
 
 #핵심 아이디어: - 뒤에 나오는 +를 다 괄호로 묶어서 -할 수를 크게 만들자.
+
+#--------------------------
+# 25.05.23
+sick = input().split('-')
+cnt = 0
+for i in range(len(sick)):
+    b = list(map(int, sick[i].split("+")))
+    if i == 0:
+        cnt += sum(b)
+    else:
+        cnt -= sum(b)
+print(cnt)
